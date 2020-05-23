@@ -11,6 +11,7 @@ class Types::EventType < Types::BaseObject
   field :category, Types::CategoryType, null: false
 
   def category
+    # avoid `object.category` b/c of N+1
     RecordLoader.for(Category).load(object.category_id)
   end
 
