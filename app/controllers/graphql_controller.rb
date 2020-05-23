@@ -1,4 +1,7 @@
 class GraphqlController < ApplicationController
+
+  skip_forgery_protection
+
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -8,6 +11,9 @@ class GraphqlController < ApplicationController
       # current_user: current_user,
     }
     result = GraphqlBatchExampleSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+
+# binding.pry
+
     render json: result
   rescue => e
     raise e unless Rails.env.development?
