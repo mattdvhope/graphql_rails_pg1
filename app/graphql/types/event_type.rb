@@ -19,10 +19,10 @@ class Types::EventType < Types::BaseObject
 
   def image
     # produces 2N + 1 queries... yikes!
-    return url_for(object.image.variant({ quality: 75 }))
+    # return url_for(object.image.variant({ quality: 75 }))
 
-    # AttachmentLoader.for(:Event, :image).load(object.id).then do |image|
-    #   url_for(image.variant({ quality: 75 }))
-    # end
+    AttachmentLoader.for(:Event, :image).load(object.id).then do |image|
+      url_for(image.variant({ quality: 75 }))
+    end
   end
 end
