@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :user do
+    name { "MyString" }
+    picture { "MyString" }
+  end
+
   factory :event do
     category
     name { "Canada Day" }
