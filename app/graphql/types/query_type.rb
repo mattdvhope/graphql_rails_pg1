@@ -11,5 +11,11 @@ module Types
     def categories
       Category.all
     end
+
+    field :users, [Types::UserType], null: false, description: "All the users"
+
+    def users
+      User.all
+    end
   end
 end
